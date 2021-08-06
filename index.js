@@ -3,12 +3,16 @@ const cors = require('cors')
 const bodyParser = require('body-parser')
 const app = express()
 const port = process.env.PORT || 3010
-const host = process.env.HOST || 'http:\\localhost:3000/'
+const host = process.env.HOST || 'http://localhost:3000/'
 
-// app.use(cors({origin: host}))
-app.use(cors({origin: "http:\\localhost:3000" }))
+app.use(cors())
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: false}))
+
+const corsOptions = {
+    origin: host,
+    optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+}
 
 const nodemailer = require("nodemailer");
 
@@ -26,7 +30,7 @@ const transporter = nodemailer.createTransport({
 });
 
 
-app.get('/', (req, res) => {
+app.get('/', cors(corsOptions), (req, res) => {
     res.send('Hello World!')
 })
 
