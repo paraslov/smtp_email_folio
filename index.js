@@ -38,11 +38,11 @@ app.post('/send-message', async (req, res) => {
         const info = await transporter.sendMail({
             from: '"Job Alert!!" <sergeybalanov.folio@gmail.com>', // sender address
             to: 'paraslovjm@gmail.com, tsfoe@mail.ru', // list of receivers
-            subject: `${name} send you a message.`, // Subject line
+            subject: `${name || 'empty name'} send you a message.`, // Subject line
             // text: "Hello world?", // plain text body
-            html: `<b>You have a message from ${name}!</b>
-            <div>Message: ${message}</div>
-            <div>${name} email is: ${email}</div>`, // html body
+            html: `<b>You have a message from ${name || 'empty name'}!</b>
+            <div>Message: ${message || 'empty message'}</div>
+            <div>${name || 'empty name'} email is: ${email || 'empty email'}</div>`, // html body
         })
     } catch (err) {
         res.send({message: 'something goes wrong', error: err})
