@@ -3,9 +3,10 @@ const cors = require('cors')
 const bodyParser = require('body-parser')
 const app = express()
 const port = process.env.PORT || 3010
-const host = process.env.HOST || 'http://localhost:3000/'
+const host = process.env.HOST || 'http:\\localhost:3000/'
 
-app.use(cors({origin: host}))
+// app.use(cors({origin: host}))
+app.use(cors({origin: "http:\\localhost:3000" }))
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: false}))
 
