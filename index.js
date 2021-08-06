@@ -3,7 +3,6 @@ const cors = require('cors')
 const bodyParser = require('body-parser')
 const app = express()
 const port = process.env.PORT || 3010
-const host = process.env.HOST || 'http://localhost:3000/'
 
 app.use(cors())
 app.use(bodyParser.json())
@@ -38,11 +37,11 @@ app.post('/send-message', async (req, res) => {
         const info = await transporter.sendMail({
             from: '"Job Alert!!" <sergeybalanov.folio@gmail.com>', // sender address
             to: 'paraslovjm@gmail.com, tsfoe@mail.ru', // list of receivers
-            subject: `${name || 'empty name'} send you a message.`, // Subject line
+            subject: `${name || 'empty name =^_^='} send you a message.`, // Subject line
             // text: "Hello world?", // plain text body
-            html: `<b>You have a message from ${name || 'empty name'}!</b>
-            <div>Message: ${message || 'empty message'}</div>
-            <div>${name || 'empty name'} email is: ${email || 'empty email'}</div>`, // html body
+            html: `<b>You have a message from ${name || 'empty name =^_^='}!</b>
+            <div>Message: ${message || 'empty message =^_^='}</div>
+            <div>${name || 'empty name =^_^='} email is: ${email || 'empty email =^_^='}</div>`, // html body
         })
     } catch (err) {
         res.send({message: 'something goes wrong', error: err})
