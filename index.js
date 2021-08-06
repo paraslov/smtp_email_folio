@@ -9,15 +9,10 @@ app.use(cors())
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: false}))
 
-const corsOptions = {
-    origin: host,
-    optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
-}
-
 const nodemailer = require('nodemailer')
 
-const smtp_user = process.env.SMTP_USER
-const smtp_password = process.env.SMTP_PASSWORD
+const smtp_user = process.env.SMTP_USER || '---'
+const smtp_password = process.env.SMTP_PASSWORD || '---'
 
 
 // create reusable transporter object using the default SMTP transport
@@ -30,7 +25,7 @@ const transporter = nodemailer.createTransport({
 })
 
 
-app.get('/', cors(corsOptions), (req, res) => {
+app.get('/', (req, res) => {
     res.send('Hello World!')
 })
 
